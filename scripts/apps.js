@@ -1,77 +1,45 @@
-const ingresarTexto = document.getElementById("ingresarTexto");
-const botonEncritar = document.getElementById("botonEncritar");
-const botonDesencriptar = document.getElementById("botonDesencriptar");
-const botonCopiar = document.getElementById("botonCopiar");
-const encontrarMensaje = document.getElementById("encontrarMensaje");
-const imagenMuneco = document.getElementById("imagenMuneco");
-const mensajeDesencriptar = document.getElementById("mensajeDesencriptar")
+document.addEventListener('DOMContentLoaded', () => {
+    const inputTexto = document.getElementById('ingresarTexto');
+    const outputTexto = document.getElementById('encontrarMensaje');
+    const botonEncriptar = document.getElementById('botonEncriptar');
+    const botonDesencriptar = document.getElementById('botonDesencriptar');
+    const botonCopiar = document.getElementById('botonCopiar');
 
-/*let remplazar = [
-    ["a", "ai"],
-    ["e", "enter"],
-    ["i", "imes"],
-    ["o", "ober"],
-    ["u", "ufat"],
-]*/
-
-let remplazar = [
-    ["a", "4"],
-    ["e", "3"],
-    ["i", "1"],
-    ["o", "0"],
-    ["u", "5"],
-]
-
-const encriptarDesencriptar = (nuevoValor) => {
-    encontrarMensaje.innerHTML = nuevoValor;
-    imagenMuneco.style.display = "none"
-    mensajeDesencriptar.display = "none"
-    botonCopiar.style.display = "block"
-    mensajes__derecha.classList.add("ajustar")
-    encontrarMensaje.classList.add("ajustar")
-    ingresarTexto.value = "";
-}
-
-botonEncritar.addEventListener("click", () => {
-    const texto = ingresarTexto.value.toLowerCase()
-    function encriptar(newText){
-        for (let i = 0; i < remplazar.length; i++){
-            if (newText.includes(remplazar[i][0])){
-                newText = newText.replaceAll(remplazar[i][0], remplazar[i][1]);
-            };
-        };
-        return newText
-    }
-    encriptarDesencriptar(encriptar(texto));
-});
-
-botonDesencriptar.addEventListener("click", () => {
-const texto = ingresarTexto.value.toLowerCase();
-function desencriptar(newText){
-    for(let i = 0; i < remplazar.length; i++){
-        if (newText.includes(remplazar[i][1])){
-            newText = newText.replaceAll(remplazar[i][1], remplazar[i][0]);
-        };
-      
+    const reglasEncriptacion = {
+        'a': 'ai',
+        'e': 'enter',
+        'i': 'imes',
+        'o': 'ober',
+        'u': 'ufat'
     };
-    return newText
-}
-encriptarDesencriptar(desencriptar(texto));
-})
 
+    function encriptarTexto(texto) {
+        return texto.replace(/[aeiou]/g, match => reglasEncriptacion[match]);
+    }
 
-botonCopiar.addEventListener("click", () => {
-    texto.select();
-    document.execCommand('copy')
-    alert("Texto Copiado");
+    function desencriptarTexto(texto) {
+        let textoDesencriptado = texto;
+        for (let [key, value] of Object.entries(reglasEncriptacion)) {
+            textoDesencriptado = textoDesencriptado.split(value).join(key);
+        }
+        return textoDesencriptado;
+    }
 
-    encontrarMensaje.innerHTML = "";
-    imagenMuneco.style.display = "block"
- 
-    botonCopiar.style.display = "none"
-    mensajes__derecha.classList.remove("ajustar")
-    encontrarMensaje.classList.remove("ajustar")
-    ingresarTexto.focus();
+    botonEncriptar.addEventListener('click', () => {
+        const texto = inputTexto.value.toLowerCase();
+        outputTexto.value = encriptarTexto(texto);
+        outputTexto.style.display = "block";
+    });
 
-})
+    botonDesencriptar.addEventListener('click', () => {
+        const texto = inputTexto.value.toLowerCase();
+        outputTexto.value = desencriptarTexto(texto);
+        outputTexto.style.display = "block";
+    });
 
+    botonCopiar.addEventListener('click', () => {
+        outputTexto.select();
+        document.execCommand('copy');
+        alert('Texto copiado al portapapeles');
+    });
+});

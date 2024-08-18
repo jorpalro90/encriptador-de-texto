@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-mx">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,34 +8,46 @@
 </head>
 <body>
     <header>
-        <div class="header">
-            <img class="logo__alura" src="./assets/Logo.png" alt="logo del encriptador">
-        </div>
+       <div class="ajustar_header">
+        <img src="./assets/Logo.png" alt="Logo del Encriptador" class="logo">
+        <h1 class="encriptador_texto">Encriptador de Texto</h1>
+      </div>
     </header>
     <main>
-        <section>
-            <div class="left" >
-                <textarea id="ingresarTexto" class="ingresar__texto" cols="30" rows="10" placeholder="Ingrese el texto aqui"></textarea>
-                <img class="imagen__exclamacion" src="./assets/bi_exclamation-circle-fill.png" alt="imagen exclamacion">
-                <p class="mensaje__informacion">Solo letras minúsculas y sin acentos</p>
-                <div class="botones__izquierda">
-                    <button id="botonEncritar" class="btn__encriptar">Encriptar</button>
-                    <button id="botonDesencriptar" class="btn__desencriptar">Desencriptar</button>
-                </div>
+        <section class="section-left">
+            <textarea id="ingresarTexto" class="text-input" rows="10" placeholder="Ingrese el texto aquí" aria-label="Área de texto para ingresar texto a encriptar o desencriptar"></textarea>
+            <div class="info-container">
+                <img src="./assets/exclamation.png" alt="Advertencia" class="icon-exclamation">
+                <p class="info-message">Solo letras minúsculas y sin acentos</p>
+            </div>
+                <div class="button-group">
+                <button id="botonEncriptar" class="btn">Encriptar</button>
+                <button id="botonDesencriptar" class="btn">Desencriptar</button>
             </div>
         </section>
-        <section>
-                <div class="mensajes__derecha">
-                    <img id="imagenMuneco" class="imagen__muneco" src="./assets/Muneco.png" alt="imagen de muneco">
-                    <textarea id="encontrarMensaje" class="encontrar__mensaje" cols="30" rows="10" placeholder="Ningun mensaje fue encontrado"></textarea>
-                    <p id="mensajeDesencriptar" class="mensaje__desencriptar">Ingresa el texto que desees encriptar o desencriptar.</p>
-                    <button id="botonCopiar" class="btn__copiar">Copiar</button>
-                </div> 
-         </section>
-        <footer>
-
-        </footer>
+        <section class="section-right">
+            <div class="message-box">
+                <img id="imagenMuneco" src="./assets/Muneco.webp" alt="Imagen de muñeco" class="image-doll">
+                <textarea id="encontrarMensaje" class="text-output" rows="10" placeholder="Ningún mensaje fue encontrado" aria-label="Área de texto para mostrar el mensaje encriptado o desencriptado"></textarea>
+                <p id="mensajeDesencriptar" class="output-message">Ingresa el texto que desees encriptar o desencriptar.</p>
+                <button id="botonCopiar" class="btn">Copiar</button>
+            </div> 
+        </section>
     </main>
+    <footer>
+        <div class="footer">
+            <h2 class="creado_por">Creado por Jorge Palacio</h2>
+            <a href="https://github.com/jorpalro90">
+                <img src="./assets/github.png" alt="Icono de GitHub">
+            </a>
+            <a href="https://www.linkedin.com/feed/">
+                <img src="./assets/linkedin.png" alt="Icono de linkedin">
+            </a>
+            <a href="https://www.instagram.com/jorgelpalacior/">
+                <img src="./assets/instagram.png" alt="Icono de Instagram">
+            </a>       
+        </div>
+    </footer>
     <script src="./scripts/apps.js"></script>
 </body>
 </html>
